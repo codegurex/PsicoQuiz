@@ -157,11 +157,5 @@ Las preguntas estan basadas en material de la catedra de **Psicopatologia I (202
 
 Este proyecto es de uso educativo. Creado para estudiantes de Psicologia y Psiquiatria.
 
-## Creditos
-
-- Contenido academico: Catedra de Psicopatologia I - 2026
-- Desarrollo: Generado con asistencia de IA
-
----
 
 **¡Buena suerte en tus estudios!** 🧠
