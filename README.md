@@ -147,7 +147,7 @@ Agrega nuevas preguntas al array `BASE_QUESTIONS`:
 
 ## Contenido Academico
 
-Las preguntas estan basadas en material de la catedra de **Psicopatologia I (2025)**, incluyendo:
+Las preguntas estan basadas en material de la catedra de **Psicopatologia I (2026)**, incluyendo:
 
 - Semiologia de los procesos y funciones psicologicas
 - Sindromes psiquiatricos principales
@@ -159,7 +159,7 @@ Este proyecto es de uso educativo. Creado para estudiantes de Psicologia y Psiqu
 
 ## Creditos
 
-- Contenido academico: Catedra de Psicopatologia I - 2025
+- Contenido academico: Catedra de Psicopatologia I - 2026
 - Desarrollo: Generado con asistencia de IA
 
 ---
