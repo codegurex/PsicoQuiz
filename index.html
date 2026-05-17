@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PsicoQuiz — Aprende Psicopatologia</title>
+  <meta name="description" content="Aplicacion educativa para estudiar semiologia psiquiatrica y sindromes psicopatologicos.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Main Menu -->
+    <div id="main-menu" class="screen active">
+      <div class="container">
+        <header class="header">
+          <div class="logo">
+            <div class="logo-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"/><path d="M17.599 6.5a3 3 0 0 0 .399-1.375"/><path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"/><path d="M3.477 10.896a4 4 0 0 1 .585-.396"/><path d="M19.938 10.5a4 4 0 0 1 .585.396"/><path d="M6 18a4 4 0 0 1-1.967-.516"/><path d="M19.967 17.484A4 4 0 0 1 18 18"/></svg>
+            </div>
+            <div class="logo-text">
+              <h1>PsicoQuiz</h1>
+              <p>Aprende Psicopatologia Jugando</p>
+            </div>
+          </div>
+          <div class="user-section">
+            <input type="text" id="username-input" placeholder="Tu nombre..." maxlength="20">
+            <div class="stats-badge">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+              <span id="max-streak">0</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="modes-grid">
+          <button class="mode-card mode-adivinar" onclick="startMode('adivinar')">
+            <div class="mode-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"/><path d="M17.599 6.5a3 3 0 0 0 .399-1.375"/><path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"/><path d="M3.477 10.896a4 4 0 0 1 .585-.396"/><path d="M19.938 10.5a4 4 0 0 1 .585.396"/><path d="M6 18a4 4 0 0 1-1.967-.516"/><path d="M19.967 17.484A4 4 0 0 1 18 18"/></svg>
+            </div>
+            <div class="mode-info">
+              <h3>Adivinar</h3>
+              <p>Preguntas con pistas y opciones multiples</p>
+            </div>
+            <div class="mode-arrow">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </div>
+          </button>
+
+          <button class="mode-card mode-flashcards" onclick="startMode('flashcards')">
+            <div class="mode-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg>
+            </div>
+            <div class="mode-info">
+              <h3>Flashcards</h3>
+              <p>Tarjetas para memorizar conceptos</p>
+            </div>
+            <div class="mode-arrow">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </div>
+          </button>
+
+          <button class="mode-card mode-examen" onclick="startMode('examen')">
+            <div class="mode-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+            </div>
+            <div class="mode-info">
+              <h3>Examen</h3>
+              <p>20 preguntas con temporizador de 10 min</p>
+            </div>
+            <div class="mode-arrow">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </div>
+          </button>
+
+          <button class="mode-card mode-contrarreloj" onclick="startMode('contrarreloj')">
+            <div class="mode-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="mode-info">
+              <h3>Contrarreloj</h3>
+              <p>60 segundos, combos y maxima puntuacion</p>
+            </div>
+            <div class="mode-arrow">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </div>
+          </button>
+
+          <button class="mode-card mode-ranking" onclick="startMode('ranking')">
+            <div class="mode-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+            </div>
+            <div class="mode-info">
+              <h3>Ranking</h3>
+              <p>Tabla de mejores puntajes</p>
+            </div>
+            <div class="mode-arrow">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </div>
+          </button>
+
+          <button class="mode-card mode-admin" onclick="startMode('admin')">
+            <div class="mode-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M9 8h1"/><path d="M9 12h1"/><path d="M9 16h1"/><path d="M14 8h1"/><path d="M14 12h1"/><path d="M14 16h1"/><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/></svg>
+            </div>
+            <div class="mode-info">
+              <h3>Admin</h3>
+              <p>Crear y gestionar preguntas</p>
+            </div>
+            <div class="mode-arrow">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </div>
+          </button>
+        </div>
+
+        <footer class="footer">
+          <p>Psicopatologia I -</p> <a href="https://codegurex.com" target="_blank"><p>Desarrollado por Codegurex</p></a>
+          <p id="questions-count">0 preguntas disponibles</p>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Quiz Screen -->
+    <div id="quiz-screen" class="screen">
+      <div class="container">
+        <header class="quiz-header">
+          <button class="back-btn" onclick="goToMenu()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            Menu
+          </button>
+          <div class="quiz-stats">
+            <div class="stat-item">
+              <span id="quiz-score">0</span>
+              <small>Puntos</small>
+            </div>
+            <div class="stat-item" id="streak-container">
+              <span id="quiz-streak">0</span>
+              <small>Racha</small>
+            </div>
+            <div class="stat-item" id="timer-container" style="display: none;">
+              <span id="quiz-timer">10:00</span>
+              <small>Tiempo</small>
+            </div>
+            <div class="stat-item" id="combo-container" style="display: none;">
+              <span id="quiz-combo">x1</span>
+              <small>Combo</small>
+            </div>
+          </div>
+        </header>
+
+        <div class="progress-bar">
+          <div class="progress-fill" id="quiz-progress"></div>
+        </div>
+
+        <div class="quiz-content">
+          <div class="question-card">
+            <div class="question-meta">
+              <span class="category-badge" id="question-category">Categoria</span>
+              <span class="question-number" id="question-number">1/10</span>
+            </div>
+            <div class="keywords" id="question-keywords"></div>
+            <h2 class="question-text" id="question-text">Pregunta</h2>
+          </div>
+
+          <div class="options-grid" id="options-container"></div>
+
+          <div class="explanation-card" id="explanation-card" style="display: none;">
+            <div class="explanation-header">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+              <span>Explicacion</span>
+            </div>
+            <p id="explanation-text"></p>
+            <button class="next-btn" id="next-btn" onclick="nextQuestion()">Siguiente</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flashcards Screen -->
+    <div id="flashcards-screen" class="screen">
+      <div class="container">
+        <header class="quiz-header">
+          <button class="back-btn" onclick="goToMenu()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            Menu
+          </button>
+          <div class="quiz-stats">
+            <div class="stat-item">
+              <span id="flashcard-progress">1/50</span>
+              <small>Tarjeta</small>
+            </div>
+            <div class="stat-item">
+              <span id="flashcard-learned">0</span>
+              <small>Aprendidas</small>
+            </div>
+          </div>
+        </header>
+
+        <div class="flashcard-container">
+          <div class="flashcard" id="flashcard" onclick="flipCard()">
+            <div class="flashcard-inner">
+              <div class="flashcard-front">
+                <span class="flashcard-label">Concepto</span>
+                <h2 id="flashcard-front-text">Termino</h2>
+                <p class="flip-hint">Toca para ver la definicion</p>
+              </div>
+              <div class="flashcard-back">
+                <span class="flashcard-label">Definicion</span>
+                <p id="flashcard-back-text">Definicion del termino</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flashcard-controls">
+          <button class="control-btn" onclick="prevCard()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+          <button class="learned-btn" id="learned-btn" onclick="toggleLearned()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Marcar como aprendida
+          </button>
+          <button class="control-btn" onclick="nextCard()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ranking Screen -->
+    <div id="ranking-screen" class="screen">
+      <div class="container">
+        <header class="quiz-header">
+          <button class="back-btn" onclick="goToMenu()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            Menu
+          </button>
+          <h2 class="screen-title">Ranking</h2>
+        </header>
+
+        <div class="ranking-tabs">
+          <button class="tab-btn active" onclick="filterRanking('all')">Todos</button>
+          <button class="tab-btn" onclick="filterRanking('adivinar')">Adivinar</button>
+          <button class="tab-btn" onclick="filterRanking('examen')">Examen</button>
+          <button class="tab-btn" onclick="filterRanking('contrarreloj')">Contrarreloj</button>
+        </div>
+
+        <div class="ranking-list" id="ranking-list">
+          <div class="empty-state">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+            <p>No hay puntajes registrados</p>
+            <span>Juega para aparecer en el ranking</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Admin Screen -->
+    <div id="admin-screen" class="screen">
+      <div class="container">
+        <header class="quiz-header">
+          <button class="back-btn" onclick="goToMenu()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            Menu
+          </button>
+          <h2 class="screen-title">Administrador</h2>
+        </header>
+
+        <div class="admin-tabs">
+          <button class="tab-btn active" onclick="switchAdminTab('list')">Lista</button>
+          <button class="tab-btn" onclick="switchAdminTab('create')">Crear</button>
+          <button class="tab-btn" onclick="switchAdminTab('generator')">Generador</button>
+        </div>
+
+        <!-- Questions List Tab -->
+        <div id="admin-list" class="admin-tab-content active">
+          <div class="admin-filters">
+            <input type="text" id="admin-search" placeholder="Buscar preguntas..." oninput="filterAdminQuestions()">
+            <select id="admin-category-filter" onchange="filterAdminQuestions()">
+              <option value="all">Todas las categorias</option>
+            </select>
+          </div>
+          <div class="admin-questions-list" id="admin-questions-list"></div>
+        </div>
+
+        <!-- Create Question Tab -->
+        <div id="admin-create" class="admin-tab-content">
+          <form id="create-question-form" class="admin-form">
+            <div class="form-group">
+              <label>Pregunta</label>
+              <textarea id="new-question" placeholder="Escribe la pregunta..." rows="3"></textarea>
+            </div>
+            <div class="form-group">
+              <label>Palabras clave (separadas por coma)</label>
+              <input type="text" id="new-keywords" placeholder="ej: memoria, amnesia, olvido">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Categoria</label>
+                <select id="new-category"></select>
+              </div>
+              <div class="form-group">
+                <label>Dificultad</label>
+                <select id="new-difficulty">
+                  <option value="facil">Facil</option>
+                  <option value="medio" selected>Medio</option>
+                  <option value="dificil">Dificil</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Opciones</label>
+              <input type="text" id="new-option-0" placeholder="Opcion A (correcta)">
+              <input type="text" id="new-option-1" placeholder="Opcion B">
+              <input type="text" id="new-option-2" placeholder="Opcion C">
+              <input type="text" id="new-option-3" placeholder="Opcion D">
+            </div>
+            <div class="form-group">
+              <label>Explicacion</label>
+              <textarea id="new-explanation" placeholder="Explicacion de la respuesta correcta..." rows="3"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Crear Pregunta</button>
+          </form>
+        </div>
+
+        <!-- Generator Tab -->
+        <div id="admin-generator" class="admin-tab-content">
+          <div class="generator-info">
+            <h3>Generador automatico de preguntas</h3>
+            <p>Pega texto en formato <code>Concepto - Definicion</code> o <code>Concepto: Definicion</code> (uno por linea)</p>
+          </div>
+          <div class="form-group">
+            <label>Texto a procesar</label>
+            <textarea id="generator-input" placeholder="Alucinacion - Percepcion sin objeto real
+Delirio - Creencia falsa e incorregible
+Anhedonia - Incapacidad de experimentar placer" rows="10"></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Categoria</label>
+              <select id="generator-category"></select>
+            </div>
+            <div class="form-group">
+              <label>Dificultad</label>
+              <select id="generator-difficulty">
+                <option value="facil">Facil</option>
+                <option value="medio" selected>Medio</option>
+                <option value="dificil">Dificil</option>
+              </select>
+            </div>
+          </div>
+          <button class="submit-btn" onclick="parseGeneratorText()">Procesar Texto</button>
+          
+          <div id="generator-preview" class="generator-preview" style="display: none;">
+            <h4>Vista previa (<span id="preview-count">0</span> items detectados)</h4>
+            <div id="preview-list"></div>
+            <button class="submit-btn success" onclick="generateQuestions()">Generar Preguntas</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Modal -->
+    <div id="results-modal" class="modal">
+      <div class="modal-content">
+        <div class="results-header">
+          <h2>Resultados</h2>
+          <div class="results-score" id="results-score">0</div>
+          <p>puntos</p>
+        </div>
+        <div class="results-stats">
+          <div class="result-stat">
+            <span class="stat-value" id="results-correct">0</span>
+            <span class="stat-label">Correctas</span>
+          </div>
+          <div class="result-stat">
+            <span class="stat-value" id="results-incorrect">0</span>
+            <span class="stat-label">Incorrectas</span>
+          </div>
+          <div class="result-stat">
+            <span class="stat-value" id="results-streak">0</span>
+            <span class="stat-label">Mejor racha</span>
+          </div>
+        </div>
+        <div class="results-actions">
+          <button class="btn-secondary" onclick="goToMenu()">Menu</button>
+          <button class="btn-primary" onclick="restartQuiz()">Jugar de nuevo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
